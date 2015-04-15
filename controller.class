@@ -1,61 +1,64 @@
+import java.time.LocalTime;
 import java.util.ArrayList;
 
+/**
+ * 
+ */
+
+/**
+ * @author tcazako
+ *
+ */
 public class Controller {
 
 	
 	
 	//String rstate;
-		boolean rstate = false;
-		ArrayList<String> Description = new ArrayList<String>();
-		int idRoom = 0;
-		int idView = 0;
+		boolean rstate;
+		//ArrayList<String> Description = new ArrayList<String>();
+		String Description;
+		int idroom;
+		LocalTime time;
+		//int idView;
 		
 		Controller()// Constructeur
-		{}// Fin Constructeur
+		{
+			System.out.println("J'instancie mon Objet ");
+			rstate = false;
+			Description = "";
+			idroom = 0;
+			time = LocalTime.now();
+		}// Fin Constructeur
 		
-		void GlobalDisplay(int idView) 
+		void GlobalDisplay(int idRoom ) //idview
 		{
 			//Sera charger de lancer l’IHM
+			System.out.println(" On ouvre L'IHM ");
+			System.out.println(" Heure actuelle : " + time);
 		}//fin Global_Display()	*/
 		
 		/******************************************************************************************************/
 		
 		boolean GetRoomState() // --- ( recupère l’état de la salle courante )
 		{
+			if(rstate == false)
+			{
+				// La Salle est Occupée ,Allume la DEL Rouge et change son "etat" ds la BD
+				System.out.println(" Salle Occupée ");
+			}
+			else if(rstate == true)
+			{
+				// La Salle est Disponible ,Allume la DEL Verte et change son "etat" ds la BD
+				System.out.println(" Salle Disponible ");
+			}
+			else{ System.out.println("Ce message ne doit jamais s'afficher !");}
+			
 			return rstate;
 		} // fin GetRoomState()	*/	
 		
 							/*String GetRoomState() // --- ( recupère l’état de la salle courante )
 							{
-								return null;
-							} 		//*/
-		
-		/******************************************************************************************************/
-		
-		void SetRoomState(int idRoom,boolean rState) // --- ( modifier l’etat de la salle courante)
-		{
-			// activer requete pour l'idSalle <<<<<<<
-			//rState = this.rstate ;
-			this.rstate = rState;
-			//Changer l'état de la salle ds la BD et modifier la D.E.L allumé.
-			
-			if(rState == false)
-			{
-				// La Salle est Occupé ,Allume la DEL Rouge et change son "etat" ds la BD
-			}
-			else if(rState == true)
-			{
-				// La Salle est Disponible ,Allume la DEL Verte et change son "etat" ds la BD
-			}
-			else{ System.out.println("Ce message ne doit jamais s'afficher !");}
-		} 	// Fin de SetRoomState() bool.Ver */
-		
-						/*void SetRoomState(int idRoom,String rState) // --- ( modifier l’etat de la salle courante)
-						{
-							// activer requete pour l'idSalle <<<<<<<
-							
-							
-							//Changer l'état de la salle ds la BD et modifier la D.E.L allumé.
+								//Changer l'état de la salle ds la BD et modifier la D.E.L allumé.
 							if(rState == "Occupé")
 							{
 								
@@ -69,15 +72,44 @@ public class Controller {
 								
 							}
 							else{ System.out.println("Ce message ne doit jamais s'afficher !");}
+								return null;
+							} 		//*/
+		
+		/******************************************************************************************************/
+		
+		void SetRoomState(int idRoom,boolean rState) // --- ( modifier l’etat de la salle courante)
+		{
+			
+			this.idroom = idRoom;
+			this.rstate = rState;
+			
+			// activer requête pour l'idSalle <<<<<<<>>>>>>> "SELECT state FROM Salle Where id_Sal = "+idSalle+" ; " //
+			
+			//Changer l'état de la salle ds la BD et modifier la D.E.L allumé.
+			// traitement pour la DEL.	
+			
+		} 	// Fin de SetRoomState() bool.Ver */
+		
+						/*void SetRoomState(int idRoom,String rState) // --- ( modifier l’etat de la salle courante)
+						{
+							// activer requete pour l'idSalle <<<<<<<
+							
+							
+							
 						} 	// Fin de SetRoomState() String.Ver */
 		
 		/******************************************************************************************************/
 		
 		String GetRoomDesc()   //--- (recupere la description de la salle designé)
 		{
-			return null;
+			System.out.println(" Description : "+Description);		
+			return Description;
 		}	// Fin de GetRoomDesc */				
 		
+		void SetRoomDesc(String string)   //--- (recupere la description de la salle designé)
+		{
+			Description= string;
+		}	// Fin de GetRoomDesc */	
 		
 		//void SetRoomTransfer(int idRoom,book tState){}
 		
